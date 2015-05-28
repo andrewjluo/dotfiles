@@ -1,23 +1,17 @@
 "==============================================================================
 "Neobundle Requirements
 "==============================================================================
-
-if system('uname -o') =~ '^GNU/'
-  let g:make = 'make'
-endif
-NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
-
- if has('vim_starting')
+if has('vim_starting')
     if &compatible
       set nocompatible               " Be iMproved
     endif
 
     " Required:
-    set runtimepath+=/Users/ajluo/.vim/bundle/neobundle.vim/
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('/Users/ajluo/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
