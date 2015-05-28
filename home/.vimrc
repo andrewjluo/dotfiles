@@ -10,6 +10,15 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+"Change the type of make used for different OS
+let g:make = 'gmake'
+if system('uname -o') =~ '^GNU/'
+  let g:make = 'make'
+endif
+
+"Increase timeout for YouCompleteMe
+let g:neobundle#install_process_timeout = 1500
+
 " Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
 
@@ -30,6 +39,14 @@ NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'Valloric/YouCompleteMe', {
+     \ 'build'      : {
+        \ 'mac'     : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+        \ 'unix'    : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+        \ 'windows' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+        \ 'cygwin'  : './install.sh --clang-completer --system-libclang --omnisharp-completer'
+        \ }
+     \ }
 
 " You can specify revision/branch/tag.
 
