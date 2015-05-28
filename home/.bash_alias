@@ -1,0 +1,25 @@
+#GUIDEBOOK STUFF===============================
+
+# ENVIRONMENTS
+alias tested="wo tested&&cd ~/tested/tested/tested"
+alias momme="wo momme&&cd ~/momme/momme/momme"
+alias turn="wo turn&&cd ~/turn/turn/turn"
+alias stomp="wo stomp&&cd ~/stomp"
+ 
+# SSH
+ alias staging="ssh bwb1.bermanbrauntech.com"
+  
+# COMMAND LINE TOOLS
+  alias la="ls -la"
+  alias ll="ls -l"
+  alias push="git push"
+  alias pull="git pull"
+  alias ci="git commit -a"
+  alias co="git checkout"
+  alias wo="workon"
+  alias rs="python manage.py runserver"
+  alias shell="python manage.py shell"
+   
+# APPLICATION SHORTCUTS
+   alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
+   alias redis="redis-server /usr/local/etc/redis.conf"

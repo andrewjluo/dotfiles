@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/afs/.ir.stanford.edu/users/a/j/ajluo/cs142/assign4/project4'
+let g:netrw_dirhist_2='/Users/ajluo/Library/Application Support/Google/Chrome/Default/Storage'
+let g:netrw_dirhist_3='/Users/ajluo/Library/Application Support/Google/Chrome/Default/Storage/ext'
+let g:netrw_dirhist_4='/Users/ajluo/Library/Application Support/Google/Chrome/Default/Local Storage'
+let g:netrw_dirhist_5='/Users/ajluo/.vim/bundle/html5.vim'
+let g:netrw_dirhist_6='/Users/ajluo/.vim/bundle/jellybeans.vim'
+let g:netrw_dirhist_7='/Users/ajluo/OneDrive/Documents/CS 142/netslip/app/views/movies'
+let g:netrw_dirhist_8='/Users/ajluo/.rvm'
+let g:netrw_dirhist_9='/Users/ajluo/.vim'
