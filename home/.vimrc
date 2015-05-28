@@ -1,7 +1,13 @@
 "==============================================================================
 "Neobundle Requirements
 "==============================================================================
-if has('vim_starting')
+
+if system('uname -o') =~ '^GNU/'
+  let g:make = 'make'
+endif
+NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
+
+ if has('vim_starting')
     if &compatible
       set nocompatible               " Be iMproved
     endif
