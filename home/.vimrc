@@ -39,6 +39,7 @@ NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'Valloric/YouCompleteMe', {
      \ 'build'      : {
         \ 'mac'     : './install.sh --clang-completer --system-libclang --omnisharp-completer',
