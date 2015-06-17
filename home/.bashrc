@@ -1,4 +1,4 @@
-# =============== QUORA STUFF ======================= #
+# =============== Q STUFF ======================= #
 . ~/.quorarc
 export ANS_DEFAULT_INSTANCE=dwc
 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -121,7 +121,7 @@ fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-#GUIDEBOOK STUFF=====================================================
+#G STUFF=====================================================
 # pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=true
 
