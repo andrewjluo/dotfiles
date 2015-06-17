@@ -40,14 +40,7 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'rdnetto/YCM-Generator'
-NeoBundle 'Valloric/YouCompleteMe', {
-     \ 'build'      : {
-        \ 'mac'     : './install.sh --clang-completer --system-libclang --omnisharp-completer',
-        \ 'unix'    : './install.sh --clang-completer --system-libclang --omnisharp-completer',
-        \ 'windows' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
-        \ 'cygwin'  : './install.sh --clang-completer --system-libclang --omnisharp-completer'
-        \ }
-     \ }
+NeoBundle 'Shougo/neocomplete'
 
 " You can specify revision/branch/tag.
 
@@ -120,5 +113,13 @@ augroup filetype
   au BufRead,BufNewFile *.y,*.ypp,*.ym  set filetype=yacc
 augroup END
 au Syntax yacc so ~/.vim/syntax/yacc.vim
+
+"Neocomplete startup
+let g:neocomplete#enable_at_startup = 1
+
+"Quora Linting
+let g:syntastic_javascript_checkers = ['gjslint']
+let g:syntastic_javascript_gjslint_conf = ' --nojsdoc --max_li'
+let g:synastic_python_checkers = ['qlint']
 
 colorscheme Tomorrow-Night
