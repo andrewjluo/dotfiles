@@ -41,6 +41,7 @@ NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'Shougo/neocomplete'
+NeoBundle 'kien/ctrlp.vim'
 
 " You can specify revision/branch/tag.
 
