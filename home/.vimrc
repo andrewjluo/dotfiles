@@ -117,6 +117,8 @@ au Syntax yacc so ~/.vim/syntax/yacc.vim
 
 "Neocomplete startup
 let g:neocomplete#enable_at_startup = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 
 "Quora Linting
 let g:syntastic_javascript_checkers = ['gjslint']

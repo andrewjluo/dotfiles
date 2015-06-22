@@ -143,4 +143,8 @@ export PATH=$HOME/anaconda/bin:$PATH
 #CS 140 Path
 export PATH="/usr/class/cs140/`uname -m`/bin:$PATH"
 
+#Homeshick print command
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+
+#Tmux color settings
+alias tmux="TERM=screen-256color-bce tmux"
