@@ -147,4 +147,4 @@ export PATH="/usr/class/cs140/`uname -m`/bin:$PATH"
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 #Tmux color settings
-alias tmux="TERM=screen-256color-bce tmux"
+export TERM=xterm-256color
