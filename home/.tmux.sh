@@ -1,1 +1,0 @@
-/home/aluo/.homesick/repos/dotfiles/home/.homesick/repos/dotfiles/home/.tmux.sh
