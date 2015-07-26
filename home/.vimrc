@@ -42,6 +42,8 @@ NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'groenewege/vim-less/'
 
 " You can specify revision/branch/tag.
 
@@ -115,6 +117,10 @@ augroup filetype
 augroup END
 au Syntax yacc so ~/.vim/syntax/yacc.vim
 
+
+"Less syntax highlighting
+nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
 "Neocomplete startup
 let g:neocomplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -126,3 +132,4 @@ let g:syntastic_javascript_gjslint_conf = ' --nojsdoc --max_li'
 let g:synastic_python_checkers = ['qlint']
 
 colorscheme Tomorrow-Night
+
