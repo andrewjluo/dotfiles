@@ -148,3 +148,8 @@ source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 #Tmux color settings
 export TERM=xterm-256color
+
+#Virtual Environments
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+

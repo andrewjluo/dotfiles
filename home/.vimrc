@@ -43,9 +43,12 @@ NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'groenewege/vim-less/'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'tpope/vim-surround'
 
 
 " You can specify revision/branch/tag.
@@ -87,15 +90,18 @@ let mapleader=","
 
 set laststatus=2
 
-"Syntastic Settings
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_auto_refresh_includes = 1
-let g:syntastic_cpp_compiler = "clang++"
-let c_no_curly_error = 1
+"Syntastic Checker
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-"Only turn on Syntastic checking with ctrl-w E
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"Q Linting
+let g:syntastic_javascript_checkers = ['gjslint']
+let g:syntastic_javascript_gjslint_conf = ' --nojsdoc --max_li'
+let g:syntastic_python_checkers = ['qlint']
 
 "Open NerdTreeTabs with Ctrl N
 map <C-n> :NERDTreeTabsToggle<CR>
@@ -120,6 +126,10 @@ augroup filetype
 augroup END
 au Syntax yacc so ~/.vim/syntax/yacc.vim
 
+
+"Less syntax highlighting
+nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
 "Neocomplete startup
 let g:neocomplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -127,18 +137,15 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "Close scratch window
 set completeopt-=preview
 
-"Quora Linting
-let g:syntastic_javascript_checkers = ['gjslint']
-let g:syntastic_javascript_gjslint_conf = ' --nojsdoc --max_li'
-let g:synastic_python_checkers = ['qlint']
-
-"CtrlP file limit
+"CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 let g:ctrlp_custom_ignore='.git$|\tmp$'
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_use_caching = 0
-noremap <C-a> :CtrlP /home/aluo/ans/web/lib/a/<CR>
+noremap <C-a> :CtrlP /web/lib/a/<CR>
 
 set cursorline
 highlight Cursorline cterm=bold

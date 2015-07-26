@@ -32,7 +32,7 @@ if [ -f ~/.bash_alias ]; then
     . ~/.bash_alias
 fi
 
-# VIRTUAL EVNIRONMENT
+# VIRTUAL ENVIRONMENT
 #source /usr/local/bin/virtualenvwrapper.sh
 export PYTHONDONTWRITEBYTECODE=1
 export VIRTUALENV_DISTRIBUTE=1
@@ -49,5 +49,3 @@ function gp(){
 #Homebrew Path
 export PATH=/usr/local/sbin:$PATH
 
-# added by Anaconda 2.1.0 installer
-export PATH="/Users/ajluo/anaconda/bin:$PATH"
