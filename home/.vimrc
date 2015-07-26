@@ -37,13 +37,18 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'justinmk/vim-syntax-extra'
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'groenewege/vim-less/'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'bling/vim-airline'
+
 
 " You can specify revision/branch/tag.
 
@@ -125,11 +130,25 @@ nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 let g:neocomplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
+"Close scratch window
+set completeopt-=preview
 
 "Quora Linting
 let g:syntastic_javascript_checkers = ['gjslint']
 let g:syntastic_javascript_gjslint_conf = ' --nojsdoc --max_li'
 let g:synastic_python_checkers = ['qlint']
 
-colorscheme Tomorrow-Night
+"CtrlP file limit
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
+let g:ctrlp_custom_ignore='.git$|\tmp$'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_use_caching = 0
+noremap <C-a> :CtrlP /home/aluo/ans/web/lib/a/<CR>
+
+set cursorline
+highlight Cursorline cterm=bold
+
+colorscheme hybrid
+
 
