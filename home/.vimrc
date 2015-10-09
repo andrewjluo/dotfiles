@@ -49,6 +49,7 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'JuliaLang/julia-vim'
 
 
 " You can specify revision/branch/tag.
@@ -146,6 +147,9 @@ let g:ctrlp_custom_ignore='.git$|\tmp$'
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_use_caching = 0
 noremap <C-a> :CtrlP /web/lib/a/<CR>
+
+"Ag silver searcher
+set runtimepath^=~/.vim/bundle/ag
 
 set cursorline
 highlight Cursorline cterm=bold

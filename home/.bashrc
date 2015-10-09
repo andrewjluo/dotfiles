@@ -153,3 +153,8 @@ export TERM=xterm-256color
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
+#MySql
+export PATH="$PATH:/usr/local/mysql/bin"
+
+#Julia
+export PATH="$PATH:/Applications/Julia-0.4.0-rc4.app/Contents/Resources/julia/bin"
