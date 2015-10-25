@@ -127,6 +127,8 @@ augroup filetype
 augroup END
 au Syntax yacc so ~/.vim/syntax/yacc.vim
 
+"Ctrl-L unhighlights"
+nnoremap <c-l> :nohl<cr><c-l>
 
 "Less syntax highlighting
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
