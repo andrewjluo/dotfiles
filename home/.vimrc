@@ -75,6 +75,7 @@ syntax on
 let g:html_indent_inctags = "html,body,head,tbody,li,form,table,tr,td"
 set smartindent
 set tabstop=2
+set softtabstop=2
 set shiftwidth=2
 set expandtab
 set number
@@ -126,6 +127,9 @@ augroup filetype
   au BufRead,BufNewFile *.y,*.ypp,*.ym  set filetype=yacc
 augroup END
 au Syntax yacc so ~/.vim/syntax/yacc.vim
+
+"Python syntax changes
+au FileType python setl shiftwidth=2 softtabstop=2 expandtab
 
 "Ctrl-L unhighlights"
 nnoremap <c-l> :nohl<cr><c-l>
