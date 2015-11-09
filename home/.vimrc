@@ -19,6 +19,9 @@ endif
 "Increase timeout for YouCompleteMe
 let g:neobundle#install_process_timeout = 1500
 
+"Allow JSX in normal JS files
+let g:jsx_ext_required = 0 
+
 " Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
 
@@ -50,6 +53,7 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'JuliaLang/julia-vim'
+NeoBundle 'mxw/vim-jsx'
 
 
 " You can specify revision/branch/tag.
