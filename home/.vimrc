@@ -40,7 +40,6 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'rdnetto/YCM-Generator'
@@ -164,6 +163,8 @@ set runtimepath^=~/.vim/bundle/ag
 set cursorline
 highlight Cursorline cterm=bold
 
+"Necessary for hybrid colorscheme
+set background=dark
 colorscheme hybrid
 
 

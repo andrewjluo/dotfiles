@@ -119,6 +119,9 @@ fi
 
 #MY STUFF=====================================================
 
+#Pretty ls colors
+export CLICOLOR=1
+
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 #G STUFF=====================================================
