@@ -42,7 +42,6 @@ NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -102,6 +101,7 @@ set statusline+=%*
 
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
 
 "Q Linting
 let g:syntastic_javascript_checkers = ['gjslint']
