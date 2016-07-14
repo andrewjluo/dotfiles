@@ -52,6 +52,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'JuliaLang/julia-vim'
 NeoBundle 'mxw/vim-jsx'
+NeoBundle 'wavded/vim-stylus'
 
 
 " You can specify revision/branch/tag.
@@ -162,6 +163,15 @@ set runtimepath^=~/.vim/bundle/ag
 
 set cursorline
 highlight Cursorline cterm=bold
+
+"fzf vim plugin (brew installed)
+set rtp+=~/.fzf
+
+"Vertical line ruler
+set colorcolumn=90
+
+"Allow scrolling with mouse in vim
+set mouse=nicr
 
 "Necessary for hybrid colorscheme
 set background=dark

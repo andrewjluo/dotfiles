@@ -1,5 +1,4 @@
 # =============== Q STUFF ======================= #
-. ~/.quorarc
 export ANS_DEFAULT_INSTANCE=dwc
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -161,3 +160,5 @@ export PATH="$PATH:/usr/local/mysql/bin"
 
 #Julia
 export PATH="$PATH:/Applications/Julia-0.4.0-rc4.app/Contents/Resources/julia/bin"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
