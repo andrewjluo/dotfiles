@@ -32,6 +32,11 @@ if [ -f ~/.bash_alias ]; then
     . ~/.bash_alias
 fi
 
+# IMPORT GIT AUTOCOMPLETION SCRIPT
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
 # VIRTUAL ENVIRONMENT
 #source /usr/local/bin/virtualenvwrapper.sh
 export PYTHONDONTWRITEBYTECODE=1
