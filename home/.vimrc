@@ -1,72 +1,36 @@
-"==============================================================================
-"Neobundle Requirements
-"==============================================================================
-if has('vim_starting')
-    if &compatible
-      set nocompatible               " Be iMproved
-    endif
+call plug#begin('~/.vim/plugged')
 
-    " Required:
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'othree/html5.vim'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-endwise'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'pangloss/vim-javascript'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'Shougo/neocomplete'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'groenewege/vim-less/'
+Plug 'rking/ag.vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-surround'
+Plug 'JuliaLang/julia-vim'
+Plug 'mxw/vim-jsx'
+Plug 'wavded/vim-stylus'
+Plug 'danro/rename.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'sickill/vim-pasta'
 
-"Change the type of make used for different OS
-let g:make = 'gmake'
-if system('uname -o') =~ '^GNU/'
-  let g:make = 'make'
-endif
+call plug#end()
 
-"Increase timeout for YouCompleteMe
-let g:neobundle#install_process_timeout = 1500
-
-"Allow JSX in normal JS files
-let g:jsx_ext_required = 0 
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Add or remove your Bundles here:
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'jistr/vim-nerdtree-tabs'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'groenewege/vim-less/'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'JuliaLang/julia-vim'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'wavded/vim-stylus'
-
-" You can specify revision/branch/tag.
-
-" Required:
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck"
-
-"==============================================================================
+:let g:airline_theme="bubblegum"
 
 " Make backspace behave in a sane manner.
 set backspace=indent,eol,start
@@ -89,8 +53,8 @@ endi
 
 imap jj <Esc>
 
-"Set <leader> to be ,
-let mapleader=","
+"Set <leader> to be space
+let mapleader = "\<Space>"
 
 set laststatus=2
 
@@ -109,7 +73,7 @@ let g:syntastic_check_on_wq = 1
 
 let g:syntastic_javascript_checkers = []
 
-function CheckJavaScriptLinter(filepath, linter)
+function! CheckJavaScriptLinter(filepath, linter)
 	if exists('b:syntastic_checkers')
 		return
 	endif
@@ -119,7 +83,7 @@ function CheckJavaScriptLinter(filepath, linter)
 	endif
 endfunction
 
-function SetupJavaScriptLinter()
+function! SetupJavaScriptLinter()
 	let l:current_folder = expand('%:p:h')
 	let l:bin_folder = fnamemodify(syntastic#util#findFileInParent('package.json', l:current_folder), ':h')
 	let l:bin_folder = l:bin_folder . '/node_modules/.bin/'
@@ -131,6 +95,7 @@ autocmd FileType javascript call SetupJavaScriptLinter()
 
 " let g:syntastic_javascript_gjslint_conf = ' --nojsdoc --max_li'
 let g:syntastic_python_checkers = ['qlint']
+let g:syntastic_ruby_checkers = ['rubocop']
 
 "Open NerdTreeTabs with Ctrl N
 map <C-n> :NERDTreeTabsToggle<CR>
@@ -158,9 +123,6 @@ au Syntax yacc so ~/.vim/syntax/yacc.vim
 "Python syntax changes
 au FileType python setl shiftwidth=2 softtabstop=2 expandtab
 
-"Ctrl-L unhighlights"
-nnoremap <c-l> :nohl<cr><c-l>
-
 "Less syntax highlighting
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
@@ -171,24 +133,11 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "Close scratch window
 set completeopt-=preview
 
-"CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
-let g:ctrlp_custom_ignore='.git$|\tmp$'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-let g:ctrlp_use_caching = 0
-noremap <C-a> :CtrlP /web/lib/a/<CR>
-
 "Ag silver searcher
 set runtimepath^=~/.vim/bundle/ag
 
 set cursorline
 highlight Cursorline cterm=bold
-
-"fzf vim plugin (brew installed)
-set rtp+=~/.fzf
 
 "Vertical line ruler
 set colorcolumn=90
@@ -196,8 +145,24 @@ set colorcolumn=90
 "Allow scrolling with mouse in vim
 set mouse=nicr
 
+"Map CtrlP to FZF
+nnoremap <c-p> :Files<cr>
+
+"Pane moving around easier
+noremap <silent> <C-h> <C-w>h
+noremap <silent> <C-j> <C-w>j
+noremap <silent> <C-k> <C-w>k
+noremap <silent> <C-l> <C-w>l
+
+"Make command mode easier in normal mode
+nnoremap ; :
+
+"Unhighlight search remap
+nnoremap <silent> <Leader><space> :nohl<cr>
+
+"Enable jsx syntax highlighting in javascript files
+let g:jsx_ext_required = 0 
+
 "Necessary for hybrid colorscheme
 set background=dark
 colorscheme hybrid
-
-
