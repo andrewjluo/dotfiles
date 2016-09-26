@@ -125,7 +125,8 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 #G STUFF=====================================================
 # pip should only run if there is a virtualenv currently activated
-export PIP_REQUIRE_VIRTUALENV=true
+export PIP_REQUIRE_VIRTUALENV=false
+# export PIP_REQUIRE_VIRTUALENV=true
 
 # cache pip-installed packages to avoid re-downloading
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
@@ -153,7 +154,7 @@ export TERM=xterm-256color
 
 #Virtual Environments
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/bin/virtualenvwrapper.sh
 
 #MySql
 export PATH="$PATH:/usr/local/mysql/bin"

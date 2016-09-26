@@ -6,13 +6,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'othree/html5.vim'
-Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-endwise'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'pangloss/vim-javascript'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'Shougo/neocomplete'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less/'
 Plug 'rking/ag.vim'
@@ -27,6 +25,8 @@ Plug 'danro/rename.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sickill/vim-pasta'
+Plug 'neomake/neomake'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -58,44 +58,10 @@ let mapleader = "\<Space>"
 
 set laststatus=2
 
-"Syntastic Checker
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-
-
 "Linting
-
-" Syntastic local linter support
-
-let g:syntastic_javascript_checkers = []
-
-function! CheckJavaScriptLinter(filepath, linter)
-	if exists('b:syntastic_checkers')
-		return
-	endif
-	if filereadable(a:filepath)
-		let b:syntastic_checkers = [a:linter]
-		let {'b:syntastic_' . a:linter . '_exec'} = a:filepath
-	endif
-endfunction
-
-function! SetupJavaScriptLinter()
-	let l:current_folder = expand('%:p:h')
-	let l:bin_folder = fnamemodify(syntastic#util#findFileInParent('package.json', l:current_folder), ':h')
-	let l:bin_folder = l:bin_folder . '/node_modules/.bin/'
-	call CheckJavaScriptLinter(l:bin_folder . 'standard', 'standard')
-	call CheckJavaScriptLinter(l:bin_folder . 'eslint_d', 'eslint')
-endfunction
-
-autocmd FileType javascript call SetupJavaScriptLinter()
-
-" let g:syntastic_javascript_gjslint_conf = ' --nojsdoc --max_li'
-let g:syntastic_python_checkers = ['qlint']
-let g:syntastic_ruby_checkers = ['rubocop']
+autocmd! BufWritePost,BufEnter * Neomake
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_ruby_enabled_makers = ['rubocop']
 
 "Open NerdTreeTabs with Ctrl N
 map <C-n> :NERDTreeTabsToggle<CR>
@@ -162,6 +128,9 @@ nnoremap <silent> <Leader><space> :nohl<cr>
 
 "Enable jsx syntax highlighting in javascript files
 let g:jsx_ext_required = 0 
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
 "Necessary for hybrid colorscheme
 set background=dark
