@@ -35,6 +35,7 @@ fi
 # IMPORT GIT AUTOCOMPLETION SCRIPT
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
+  __git_complete co _git_checkout
 fi
 
 # VIRTUAL ENVIRONMENT

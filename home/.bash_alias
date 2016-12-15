@@ -23,3 +23,20 @@ alias stomp="wo stomp&&cd ~/stomp"
 # APPLICATION SHORTCUTS
    alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
    alias redis="redis-server /usr/local/etc/redis.conf"
+
+# SSH shortcut
+   change_profile_when_ssh () {
+     local PROFILE="Default"
+     if [ $1 == "den" ]; then
+       PROFILE="AFFINITY-PRODUCTION"
+     fi
+
+     echo -e "\033]50;SetProfile="$PROFILE"\a";
+     ssh $@;
+     echo -e "\033]50;SetProfile=Default\a";
+   }
+
+alias ssh=change_profile_when_ssh $@
+
+#Vim To Nvim
+alias vim="nvim"

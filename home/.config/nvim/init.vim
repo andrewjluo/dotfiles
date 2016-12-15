@@ -27,6 +27,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'sickill/vim-pasta'
 Plug 'neomake/neomake'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'junegunn/seoul256.vim'
 
 call plug#end()
 
@@ -59,9 +60,25 @@ let mapleader = "\<Space>"
 set laststatus=2
 
 "Linting
-autocmd! BufWritePost,BufEnter * Neomake
+autocmd! BufWritePost * Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_verbose = 2
+
+"Linting Shortcuts
+nnoremap <Leader>lo :lopen<CR>
+nnoremap <Leader>lc :lclose<CR>
+nnoremap <Leader>ln :lnext<CR>
+nnoremap <Leader>lp :lprev<CR>
+
+" load local eslint in the project root
+" modified from https://github.com/mtscout6/syntastic-local-eslint.vim
+let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
+let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+
+let g:neomake_error_sign = { 'text': '>>', 'texthl': 'airline_error', }
+let g:neomake_warning_sign = { 'text': '>>', 'texthl': 'airline_warning', }
 
 "Open NerdTreeTabs with Ctrl N
 map <C-n> :NERDTreeTabsToggle<CR>
@@ -114,20 +131,18 @@ set mouse=nicr
 "Map CtrlP to FZF
 nnoremap <c-p> :Files<cr>
 
+
 "Pane moving around easier
 noremap <silent> <C-h> <C-w>h
 noremap <silent> <C-j> <C-w>j
 noremap <silent> <C-k> <C-w>k
 noremap <silent> <C-l> <C-w>l
 
-"Make command mode easier in normal mode
-nnoremap ; :
-
 "Unhighlight search remap
 nnoremap <silent> <Leader><space> :nohl<cr>
 
 "Enable jsx syntax highlighting in javascript files
-let g:jsx_ext_required = 0 
+let g:jsx_ext_required = 0
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -135,3 +150,6 @@ let g:deoplete#enable_at_startup = 1
 "Necessary for hybrid colorscheme
 set background=dark
 colorscheme hybrid
+
+nnoremap <Leader>ve :sp ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>vv :vs ~/.config/nvim/init.vim<CR>
