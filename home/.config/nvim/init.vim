@@ -27,7 +27,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'sickill/vim-pasta'
 Plug 'neomake/neomake'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'junegunn/seoul256.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
