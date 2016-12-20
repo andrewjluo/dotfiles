@@ -151,5 +151,8 @@ let g:deoplete#enable_at_startup = 1
 set background=dark
 colorscheme hybrid
 
+"Tmux navigate left fix for neovim
+nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+
 nnoremap <Leader>ve :sp ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>vv :vs ~/.config/nvim/init.vim<CR>
