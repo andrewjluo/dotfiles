@@ -133,7 +133,7 @@ export PIP_REQUIRE_VIRTUALENV=false
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 
 # virtualenvwrapper (tools to make virtualenv a bit easier to use, incl. mkvirtualenv)
-# source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -155,7 +155,7 @@ export TERM=xterm-256color
 
 #Virtual Environments
 export WORKON_HOME=$HOME/.virtualenvs
-# source /usr/local/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
 
 #MySql
 export PATH="$PATH:/usr/local/mysql/bin"
