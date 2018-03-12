@@ -1,6 +1,9 @@
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
+# Expose brew python2
+export PATH="/usr/local/opt/python@2/bin:$PATH"
+
 #RVM - Ruby Virtual Manager
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 export PATH=$PATH:/Users/ajluo/Documents/AndroidADT/sdk/platform-tools
@@ -55,3 +58,5 @@ function gp(){
 #Homebrew Path
 export PATH=/usr/local/sbin:$PATH
 
+#Android SDK platform tools path
+export PATH="$PATH:~/Library/Android/sdk/platform-tools/"

@@ -155,7 +155,10 @@ export TERM=xterm-256color
 
 #Virtual Environments
 export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
+export VIRTUALENVWRAPPER_PYTHON='/usr/local/opt/python@2/bin/python2'
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+source /usr/local/bin/virtualenvwrapper.sh
 
 #MySql
 export PATH="$PATH:/usr/local/mysql/bin"
@@ -163,4 +166,19 @@ export PATH="$PATH:/usr/local/mysql/bin"
 #Julia
 export PATH="$PATH:/Applications/Julia-0.4.0-rc4.app/Contents/Resources/julia/bin"
 
+#AWS CLI
+export AWS_MFA_ARN=arn:aws:iam::798215447140:mfa/andrew
+export AWS_ACCESS_KEY="ASIAJH6QICXD7R5GIHRQ"
+export AWS_SECRET_ACCESS_KEY="/dPQDzauiOEpMEzANWAXRMCJmlrxHp5RTfK0m4vE"
+export AWS_SESSION_TOKEN="FQoDYXdzEEoaDBGLS6KodDGV6oVRuyKwAcQCENqL+MgpMJ9iqqIdbjbXR04JG1PFXRApl29EKtjPUvl/MKjv0o/11ORSXu7g1SFdX+xlo7iUmUzyInmqOYFfXrEr6x+Eurzak5UFqaeEeVawhSNinOcWOV8CHkwzOykaxIsWcYNkhAJ6goYWUYTuhQSBfaC5bwUIvbdDj5E/QliWKU8FqjTtmId2Y1m0iX7uwv3TvL3QgPT0vco1x+h1jT1kdkNZ3BlpimrKtZjRKJ2G2ccF"
+
+#Android SDK for React Native
+export ANDROID_HOME=~/Library/Android/sdk
+
+export PATH="$PATH:~/Library/Python/2.7/bin"
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+# Useful for git and ctrl d
+IGNOREEOF=10   # Shell only exists after the 10th consecutive Ctrl-d

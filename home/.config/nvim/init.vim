@@ -28,10 +28,17 @@ Plug 'sickill/vim-pasta'
 Plug 'neomake/neomake'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'airblade/vim-rooter'
+Plug 'vim-ruby/vim-ruby'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
+Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
 
-:let g:airline_theme="bubblegum"
+let g:airline_theme="bubblegum"
 
 " Make backspace behave in a sane manner.
 set backspace=indent,eol,start
@@ -64,7 +71,8 @@ autocmd! BufWritePost * Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_verbose = 2
+let s:tslint_path = system('PATH=$(npm bin):$PATH && which tslint')
+let g:neomake_verbose = 0
 
 "Linting Shortcuts
 nnoremap <Leader>lo :lopen<CR>
@@ -75,7 +83,23 @@ nnoremap <Leader>lp :lprev<CR>
 " load local eslint in the project root
 " modified from https://github.com/mtscout6/syntastic-local-eslint.vim
 let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
-let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+let g:neomake_javascript_eslint_maker = {
+      \ 'args': ['-f', 'compact'],
+      \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+      \   '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
+      \ 'exe': substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', ''),
+      \ }
+
+let g:neomake_typescript_tslint_maker = {
+      \ 'exe': substitute(s:tslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', ''),
+      \ 'args': ['%:p'],
+      \ 'errorformat': '%EERROR: %f[%l\, %c]: %m,%E%f[%l\, %c]: %m',
+      \ }
+
+let g:neomake_tsx_tslint_maker = g:neomake_typescript_tslint_maker
+
+let g:neomake_typescript_enabled_makers = ['tslint']
+let g:neomake_tsx_enabled_makersa = ['tslint']
 
 let g:neomake_error_sign = { 'text': '>>', 'texthl': 'airline_error', }
 let g:neomake_warning_sign = { 'text': '>>', 'texthl': 'airline_warning', }
@@ -151,8 +175,33 @@ let g:deoplete#enable_at_startup = 1
 set background=dark
 colorscheme hybrid
 
+"Case insensitive search
+set ignorecase
+
+"Relative line numbers
+set relativenumber
+
+"For vim-rooter
+let g:rooter_patterns = ['Rakefile', '.git/']
+
 "Tmux navigate left fix for neovim
 nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
 nnoremap <Leader>ve :sp ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>vv :vs ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>vs :source ~/.config/nvim/init.vim<CR>
+
+"line movement
+nmap <M-j> :m+<CR>==
+nmap <M-k> :m-2<CR>==
+imap <M-j> <Esc>:m+<CR>==gi
+imap <M-k> <Esc>:m-2<CR>==gi
+vmap <M-j> :m'>+<CR>gv=gv
+vmap <M-k> :m-2<CR>gv=gv
+
+cnoremap <C-a> <HOME>
+cnoremap <C-e> <END>
+cnoremap <C-f> <RIGHT>
+cnoremap <C-b> <LEFT>
+cnoremap <C-n> <DOWN>
+cnoremap <C-p> <UP>

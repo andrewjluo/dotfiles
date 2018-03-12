@@ -26,7 +26,7 @@ alias stomp="wo stomp&&cd ~/stomp"
 
 # SSH shortcut
    change_profile_when_ssh () {
-     local PROFILE="Default"
+     local PROFILE="Affinity"
      if [ $1 == "den" ]; then
        PROFILE="AFFINITY-PRODUCTION"
      fi
@@ -40,3 +40,6 @@ alias ssh=change_profile_when_ssh $@
 
 #Vim To Nvim
 alias vim="nvim"
+
+#Nag for file searching
+alias nag="ag -lG"
