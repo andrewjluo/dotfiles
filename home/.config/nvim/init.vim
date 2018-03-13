@@ -205,3 +205,6 @@ cnoremap <C-f> <RIGHT>
 cnoremap <C-b> <LEFT>
 cnoremap <C-n> <DOWN>
 cnoremap <C-p> <UP>
+
+"Cursor buffer
+set scrolloff=3
