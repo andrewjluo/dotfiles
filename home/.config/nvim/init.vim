@@ -25,16 +25,20 @@ Plug 'danro/rename.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sickill/vim-pasta'
-Plug 'neomake/neomake'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-rooter'
 Plug 'vim-ruby/vim-ruby'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
+" Plug 'peitalin/vim-jsx-typescript'
+" Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ianks/vim-tsx'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'w0rp/ale'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'yssl/QFEnter'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'mhartington/nvim-typescript', { 'do': 'sh install.sh' }
+Plug 'tpope/vim-abolish'
 
 call plug#end()
 
@@ -66,13 +70,13 @@ let mapleader = "\<Space>"
 
 set laststatus=2
 
-"Linting
-autocmd! BufWritePost * Neomake
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_ruby_enabled_makers = ['rubocop']
-let s:tslint_path = system('PATH=$(npm bin):$PATH && which tslint')
-let g:neomake_verbose = 0
+""Linting with Neomake
+"autocmd! BufWritePost * Neomake
+"let g:neomake_javascript_enabled_makers = ['eslint']
+"let g:neomake_jsx_enabled_makers = ['eslint']
+"let g:neomake_ruby_enabled_makers = ['rubocop']
+"let s:tslint_path = system('PATH=$(npm bin):$PATH && which tslint')
+"let g:neomake_verbose = 0
 
 "Linting Shortcuts
 nnoremap <Leader>lo :lopen<CR>
@@ -80,29 +84,45 @@ nnoremap <Leader>lc :lclose<CR>
 nnoremap <Leader>ln :lnext<CR>
 nnoremap <Leader>lp :lprev<CR>
 
-" load local eslint in the project root
-" modified from https://github.com/mtscout6/syntastic-local-eslint.vim
-let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
-let g:neomake_javascript_eslint_maker = {
-      \ 'args': ['-f', 'compact'],
-      \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-      \   '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
-      \ 'exe': substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', ''),
-      \ }
+"" load local eslint in the project root
+"" modified from https://github.com/mtscout6/syntastic-local-eslint.vim
+"let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
+"let g:neomake_javascript_eslint_maker = {
+"      \ 'args': ['-f', 'compact'],
+"      \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+"      \   '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
+"      \ 'exe': substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', ''),
+"      \ }
 
-let g:neomake_typescript_tslint_maker = {
-      \ 'exe': substitute(s:tslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', ''),
-      \ 'args': ['%:p'],
-      \ 'errorformat': '%EERROR: %f[%l\, %c]: %m,%E%f[%l\, %c]: %m',
-      \ }
+"let g:neomake_typescript_tslint_maker = {
+"      \ 'exe': substitute(s:tslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', ''),
+"      \ 'args': ['%:p'],
+"      \ 'errorformat': '%EERROR: %f[%l\, %c]: %m,%E%f[%l\, %c]: %m',
+"      \ }
 
-let g:neomake_tsx_tslint_maker = g:neomake_typescript_tslint_maker
+"let g:neomake_tsx_tslint_maker = g:neomake_typescript_tslint_maker
 
-let g:neomake_typescript_enabled_makers = ['tslint']
-let g:neomake_tsx_enabled_makersa = ['tslint']
+"let g:neomake_typescript_enabled_makers = ['tslint']
+"let g:neomake_tsx_enabled_makersa = ['tslint']
 
-let g:neomake_error_sign = { 'text': '>>', 'texthl': 'airline_error', }
-let g:neomake_warning_sign = { 'text': '>>', 'texthl': 'airline_warning', }
+"let g:neomake_error_sign = { 'text': '>>', 'texthl': 'airline_error', }
+"let g:neomake_warning_sign = { 'text': '>>', 'texthl': 'airline_warning', }
+
+"Linting with Ale
+let g:ale_linters = {
+\  'ruby': ['rubocop'],
+\  'javascript': ['eslint'],
+\  'typescript': ['tslint', 'tsserver', 'prettier'],
+\  'typescriptreact': ['tslint', 'tsserver', 'prettier'],
+\}
+
+let g:ale_fixers = {
+\  'typescript': ['prettier'],
+\  'typescriptreact': ['prettier'],
+\}
+
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_fix_on_save = 1
 
 "Open NerdTreeTabs with Ctrl N
 map <C-n> :NERDTreeTabsToggle<CR>
@@ -155,7 +175,6 @@ set mouse=nicr
 "Map CtrlP to FZF
 nnoremap <c-p> :Files<cr>
 
-
 "Pane moving around easier
 noremap <silent> <C-h> <C-w>h
 noremap <silent> <C-j> <C-w>j
@@ -205,6 +224,26 @@ cnoremap <C-f> <RIGHT>
 cnoremap <C-b> <LEFT>
 cnoremap <C-n> <DOWN>
 cnoremap <C-p> <UP>
+
+nnoremap <Leader>gd :TSDef<cr>
+nnoremap <Leader>tr :TSRefs<cr>
+
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<C-v>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_keymap.topen = ['<C-t>']
+
+iabbrev REact React
+iabbrev COmponent Component
+iabbrev COMponent Component
+iabbrev Compnoent Component
+iabbrev COmpnoent Component
+iabbrev improt import
+iabbrev impot import
+
+"Brew python
+let g:python2_host_prog = '/usr/local/opt/python@2/bin/python2'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 "Cursor buffer
 set scrolloff=3

@@ -122,8 +122,6 @@ fi
 export CLICOLOR=1
 export LSCOLORS=ExGxhxDxfxhxhxhxhxcxcx
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 #G STUFF=====================================================
 # pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=false
@@ -132,14 +130,8 @@ export PIP_REQUIRE_VIRTUALENV=false
 # cache pip-installed packages to avoid re-downloading
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 
-# virtualenvwrapper (tools to make virtualenv a bit easier to use, incl. mkvirtualenv)
-source /usr/local/bin/virtualenvwrapper.sh
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
-# Make RVM work correctly
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
 # Anaconda
 export PATH=$HOME/anaconda/bin:$PATH
@@ -158,7 +150,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/bin/virtualenvwrapper.sh
 
 #MySql
 export PATH="$PATH:/usr/local/mysql/bin"
@@ -178,6 +170,8 @@ export ANDROID_HOME=~/Library/Android/sdk
 export PATH="$PATH:~/Library/Python/2.7/bin"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH="$PATH:/Users/andrew/.local/bin"
 
 
 # Useful for git and ctrl d
